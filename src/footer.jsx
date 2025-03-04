@@ -10,7 +10,7 @@ const Footer = () => {
           <p style={styles.contactItem}>
             📍 123, Main Street, Colombo, Sri Lanka
           </p>
-          <p style={styles.contactItem}>📞 +94 77 123 4567</p>
+          <p style={styles.contactItem}>📞 +61 450 012 766</p>
           <a style={styles.contactItem} href="mailto:techmartengineering@yahoo.com">
             ✉️ techmartengineering@yahoo.com
           </a>
