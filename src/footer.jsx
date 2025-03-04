@@ -8,7 +8,7 @@ const Footer = () => {
         <div style={styles.contactInfo}>
           <h3 style={styles.footerHeading}>Contact Us</h3>
           <p style={styles.contactItem}>
-            📍 123, Main Street, Colombo, Sri Lanka
+            📍 190/2 , St. Anthony's Road,Kadawatha
           </p>
           <p style={styles.contactItem}>📞 +61 450 012 766</p>
           <a style={styles.contactItem} href="mailto:techmartengineering@yahoo.com">
