@@ -1,7 +1,7 @@
 /* RoofmartNavbar.css */
 :root {
   --primary-blue: #0c4da2;
-  --primary-red: #e63946;
+  --primary-red: rgb(255, 98, 0) ;
   --dark-blue: #083a7d;
   --white: #ffffff;
 }
