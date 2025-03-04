@@ -1,0 +1,206 @@
+/* RoofmartNavbar.css */
+:root {
+  --primary-blue: #0c4da2;
+  --primary-red: #e63946;
+  --dark-blue: #083a7d;
+  --white: #ffffff;
+}
+
+.navbar-container {
+  width: 100%;
+  background-color: var(--primary-blue);
+  /* position: fixed; */
+  z-index: 3;
+  
+}
+
+.top-red-line {
+  height: 4px;
+  background-color: var(--primary-red);
+  width: 100%;
+}
+
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo Section */
+.logo-container {
+  background-color: var(--primary-red);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-box {
+  background-color: var(--white);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.logo-image {
+  height: 40px;
+}
+
+.logo-text {
+  color: var(--white);
+  /* margin-left: 8px; */
+}
+
+.logo-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.logo-subtitle {
+  font-size: 10px;
+}
+
+/* Navigation */
+.navbar-navigation {
+  flex: 1;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: var(--white);
+  text-decoration: none;
+  padding: 20px 15px;
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.nav-item:hover .nav-link {
+  background-color: var(--dark-blue);
+}
+
+.nav-item.active .nav-link {
+  border-bottom: 2px solid var(--primary-red);
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-arrow {
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: var(--dark-blue);
+  min-width: 200px;
+  z-index: 100;
+  top: 100%;
+  left: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 15px;
+  color: var(--white);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: var(--primary-blue);
+}
+
+/* Language Flags */
+.language-flags {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.flag-link {
+  margin: 0 5px;
+}
+
+.flag-icon {
+  height: 16px;
+  width: auto;
+  display: block;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.mobile-menu-line {
+  width: 25px;
+  height: 2px;
+  background-color: var(--white);
+  margin: 5px 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .navbar-content {
+    flex-wrap: wrap;
+  }
+  
+  .logo-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .mobile-menu-button {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
+  
+  .navbar-navigation {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  
+  .navbar-navigation.mobile-open {
+    max-height: 500px;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+  }
+  
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    background-color: rgba(8, 58, 125, 0.7);
+  }
+  
+  .language-flags {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 0;
+  }
+}
