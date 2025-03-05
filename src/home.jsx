@@ -17,6 +17,11 @@ export const Home = () => {
       <Slider/>
 
       </div>
+
+
+      <div style={{maxWidth:'100vw', padding:"0"}}>
+      <Projects/>
+      </div>
       <div style={{maxWidth:'100vw', padding:"0"}}>
       <ProductGrid/>
       </div>
@@ -24,9 +29,7 @@ export const Home = () => {
       <div style={{maxWidth:'100vw', padding:"0"}}>
       <Details/>
       </div>
-      <div style={{maxWidth:'100vw', padding:"0"}}>
-      <Projects/>
-      </div>
+     
 
       <div style={{maxWidth:'100vw', padding:"0"}}>
       <OurScope/>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
+import img1 from './assets/sliderImages/slider1.jpg';
+
 // import img1 from './assets/sliderImages/slider1.jpg';
 import img2 from './assets/sliderImages/slider2.jpg';
 import img3 from './assets/sliderImages/slider3.jpg';
@@ -109,12 +111,26 @@ const Projects = () => {
           </div>
         </div>
 
+        <div style={{ backgroundImage: `url(${img1})` }} className="img"></div>
+
+
         <div className="all-projects-btn-container">
           <button className="all-projects-btn">View All Projects</button>
         </div>
       </div>
 
       <style jsx>{`
+
+
+.img {
+  width: 80vw;
+  height: 100vh;
+
+  background-size: contain; /* Adjusts the image to cover the entire element */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents image repetition */
+}
+
         .projects-section {
           background-color: #f9fafb;
           padding: 4rem 1rem;
