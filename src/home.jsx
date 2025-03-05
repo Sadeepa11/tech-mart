@@ -7,6 +7,7 @@ import WhoWeAre from './Whoweare'
 import OurClients from './ourClients'
 import Footer from './footer'
 import OurScope from './ourScope'
+import ProjectSlider from './projectSlider'
 
 
 export const Home = () => {
@@ -21,6 +22,10 @@ export const Home = () => {
 
       <div style={{maxWidth:'100vw', padding:"0"}}>
       <Projects/>
+      </div>
+
+      <div style={{maxWidth:'100vw', padding:"0"}}>
+      <ProjectSlider/>
       </div>
       <div style={{maxWidth:'100vw', padding:"0"}}>
       <ProductGrid/>

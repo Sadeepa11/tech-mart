@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import img1 from './assets/sliderImages/slider0.jpg';
 import img2 from './assets/sliderImages/slider2.jpg';
 import img3 from './assets/sliderImages/slider3.jpg';
+import img4 from './assets/sliderImages/slider4.png';
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -13,7 +14,8 @@ const Slider = () => {
   const slides = [
     { id: 1, image: img1 },
     { id: 2, image: img2 },
-    { id: 3, image: img3 }
+    { id: 3, image: img3 },
+    { id: 4, image: img4 }
   ];
   
   // Auto-play functionality
@@ -99,7 +101,7 @@ const Slider = () => {
     slideImage: {
       width: '100%', // Changed from 100vw to 100% to stay within container
       height: '500px',
-      objectFit: 'cover', // Changed from contain to cover for better visual
+      objectFit: 'contain', // Changed from contain to cover for better visual
       display: 'block'
     },
     navButton: {
