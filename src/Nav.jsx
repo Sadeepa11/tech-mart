@@ -135,6 +135,8 @@ const Nav = () => {
         .company-slogan {
           color: var(--text-dark);
           font-weight: 500;
+          margin-left:30px;
+         font-family: fantasy;
         }
 
         .hotline {
