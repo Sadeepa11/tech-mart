@@ -84,7 +84,8 @@ const Slider = () => {
       position: 'relative',
       maxWidth: '100%', // Ensures content doesn't exceed viewport width
       overflow: 'hidden', // Prevents horizontal scrolling
-      touchAction: 'pan-y'
+      touchAction: 'pan-y',
+      backgroundColor:'rgb(182, 186, 189)',
     },
     slideTrack: {
       display: 'flex',
