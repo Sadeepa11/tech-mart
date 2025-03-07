@@ -20,7 +20,7 @@ const Nav = () => {
       {/* Top info bar with hotline */}
       <div className="info-bar">
         <div className="container info-container">
-          <div className="company-slogan">Quality Roofing Solutions</div>
+          <div className="company-slogan">MADE OF STEEL</div>
           <div className="hotline">
             <Phone size={16} className="hotline-icon" />
             <span>Hotline:</span>
