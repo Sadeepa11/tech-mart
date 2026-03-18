@@ -14,8 +14,8 @@ const Footer = () => {
           <br />
           <p style={styles.contactItem}>WhatsApp : +61 450 012 766</p>
           <br />
-          <p style={styles.contactItem}>📞 0774515539</p>
-          <p style={styles.contactItem}>📞 0112901259</p>
+          <p style={styles.contactItem}>📞 +94 76 237 2782</p>
+          <p style={styles.contactItem}>📞 +61 45 001 2766</p>
           <br />
           <a style={styles.contactItem} href="mailto:techmartengineering@yahoo.com">
             ✉️ techmartengineering@yahoo.com
