@@ -24,7 +24,8 @@ const Nav = () => {
           <div className="hotline">
             <Phone size={16} className="hotline-icon" />
             <span>Hotline:</span>
-            <a href="tel:0774515539" className="hotline-number">0774515539</a>
+            <a href="tel:94762372782" className="hotline-number">= +94 76 237 2782</a>
+            <a href="tel:61450012766" className="hotline-number">= +61 45 001 2766</a>
           </div>
         </div>
       </div>
