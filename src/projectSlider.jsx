@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { X } from "lucide-react";
 import "./ProjectSlider.css";
 
 import img1 from './assets/PSlider/imgs1.jpg';
@@ -24,191 +24,89 @@ import img19 from './assets/PSlider/imgs19.jpg';
 import img20 from './assets/PSlider/imgs20.jpg';
 import img21 from './assets/PSlider/imgs21.jpg';
 
-
-
-// import owner from "../assets/images/owner/owner.jpg";
-
-// import { img } from "framer-motion/client";
 const ProjectSlider = () => {
-  const flowers = [
-    {
-
-      image: img1,
-     
-    },
-    {
-  
-      image:img2,
-   
-    },
-    {
-  
-      image: img3,
-    
-    },
-    {
-  
-      image: img4,
-    
-    },
-    {
-  
-      image: img5,
-    
-    },
-    {
-  
-      image: img6,
-    
-    },
-    {
-  
-      image: img7,
-    
-    },
-    {
-  
-      image: img8,
-    
-    },
-    {
-  
-      image: img9,
-    
-    },
-    {
-  
-      image: img10,
-    
-    },
-    {
-  
-      image: img11,
-    
-    },
-    {
-  
-      image: img12,
-    
-    },
-    {
-  
-      image: img13,
-    
-    },
-    {
-  
-      image: img14,
-    
-    },
-    {
-  
-      image: img15,
-    
-    },
-    {
-  
-      image: img16,
-    
-    },
-    {
-  
-      image: img17,
-    
-    },
-    {
-  
-      image: img18,
-    
-    },
-    {
-  
-      image: img19,
-    
-    },
-    {
-  
-      image: img20,
-    
-    },   
-    {
-  
-      image: img21,
-    
-    }
+  const allImages = [
+    img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
+    img11, img12, img13, img14, img15, img16, img17, img18, img19, img20, img21
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const ITEMS_PER_PAGE = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  useEffect(() => {
-    let interval;
-    if (isAutoPlaying) {
-      interval = setInterval(() => {
-        nextSlide();
-      }, 3000);
-    }
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, currentIndex]);
+  const totalPages = Math.ceil(allImages.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentImages = allImages.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % flowers.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + flowers.length) % flowers.length);
-  };
-
-  const goToSlide = (index) => {
-    setCurrentIndex(index);
-    setIsAutoPlaying(false);
+  const goToPage = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: document.querySelector('.project-gallery-section').offsetTop - 100, behavior: 'smooth' });
   };
 
   return (
+    <div className="project-gallery-section">
+      <div className="gallery-grid">
+        {currentImages.map((img, index) => {
+          return (
+            <div 
+              key={index + startIndex} 
+              className="gallery-item"
+              onClick={() => setSelectedImage(img)}
+            >
+              <div className="image-wrapper">
+                <img src={img} alt={`Tech Mart Steel Structure Project ${index + startIndex + 1}`} loading="lazy" />
+                <div className="image-overlay">
+                  <span className="overlay-text">View Project</span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
 
-
-
-    
-    <div className="slider-container">
-      <div className="slider-wrapper">
-        {flowers.map((flower, index) => (
-          <div
-            key={index}
-            className={`slide ${index === currentIndex ? "active" : ""}`}
+      {totalPages > 1 && (
+        <div className="gallery-pagination">
+          <button 
+            className={`page-btn ${currentPage === 1 ? 'disabled' : ''}`}
+            onClick={() => currentPage > 1 && goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
           >
-            <img
-              src={flower.image}
-              // alt={flower.name}
-              className="slide-image"
-            />
-            {/* <div className="slide-content">
-              <h2 className="slide-title">{flower.name}</h2>
-              <p className="slide-description">{flower.description}</p>
-            </div> */}
-          </div>
-        ))}
-
-        <div className="slider-nav">
-          <button className="nav-button" onClick={prevSlide}>
-            <ChevronLeft size={24} />
+            Previous
           </button>
-          <button className="nav-button" onClick={nextSlide}>
-            <ChevronRight size={24} />
+          
+          <div className="page-numbers">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                className={`page-num ${currentPage === i + 1 ? 'active' : ''}`}
+                onClick={() => goToPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+
+          <button 
+            className={`page-btn ${currentPage === totalPages ? 'disabled' : ''}`}
+            onClick={() => currentPage < totalPages && goToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
           </button>
         </div>
-      </div>
+      )}
 
-      <div className="thumbnails">
-        {flowers.map((flower, index) => (
-          <div
-            key={index}
-            className={`thumbnail ${index === currentIndex ? "active" : ""}`}
-            onClick={() => goToSlide(index)}
-          >
-            <img src={flower.image} alt={flower.name} />
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div className="gallery-modal" onClick={() => setSelectedImage(null)}>
+          <button className="modal-close" onClick={() => setSelectedImage(null)}>
+            <X size={32} />
+          </button>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <img src={selectedImage} alt="Full Project View" />
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

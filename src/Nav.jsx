@@ -1,14 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import logo from './assets/Logo/logo.jpeg';
-import { Phone, Menu, X } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown } from 'lucide-react';
 
 const Nav = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleDropdown = (index, e) => {
-    e.preventDefault();
-    setActiveDropdown(activeDropdown === index ? null : index);
+    if (window.innerWidth < 992) {
+      e.preventDefault();
+      setActiveDropdown(activeDropdown === index ? null : index);
+    }
   };
 
   const toggleMobileMenu = () => {
@@ -16,78 +27,80 @@ const Nav = () => {
   };
 
   return (
-    <div className="navbar-wrapper">
-      {/* Top info bar with hotline */}
+    <div className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
+      {/* Top info bar */}
       <div className="info-bar">
         <div className="container info-container">
-          <div className="company-slogan">MADE OF STEEL</div>
+          <div className="company-slogan">Engineering Excellence In Steel</div>
           <div className="hotline">
-            <Phone size={16} className="hotline-icon" />
-            <span>Hotline:</span>
+            <Phone size={14} className="hotline-icon" />
+            <span className="hotline-label">Hotline:</span>
             <a href="tel:94762372782" className="hotline-number">+94 76 237 2782</a>
-            <a href="tel:61450012766" className="hotline-number">/  +61 45 001 2766</a>
+            <span className="divider">|</span>
+            <a href="tel:61450012766" className="hotline-number">+61 45 001 2766</a>
           </div>
         </div>
       </div>
       
       {/* Main navbar */}
       <div className="navbar-container">
-        <div className="gray-accent-line"></div>
         <div className="container main-nav">
           {/* Logo */}
           <div className="logo-area">
-            <div className="logo-wrapper">
-              <img src={logo} alt="Roofmart Logo" className="logo" />
-            </div>
+            <a href="/" className="logo-link">
+              <img src={logo} alt="Tech Mart Logo" className="logo" />
+            </a>
           </div>
           
           {/* Mobile toggle */}
-          <button className="mobile-toggle" onClick={toggleMobileMenu}>
-            {mobileMenuOpen ? <X style={{color:"white"}} size={24} /> : <Menu size={24} />}
+          <button className="mobile-toggle" onClick={toggleMobileMenu} aria-label="Toggle menu">
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           
           {/* Navigation */}
           <nav className={`navigation ${mobileMenuOpen ? 'active' : ''}`}>
+            {/* Mobile close button inside the drawer */}
+            <button className="mobile-drawer-close" onClick={toggleMobileMenu} aria-label="Close menu">
+              <X size={24} />
+            </button>
             <ul className="nav-menu">
               <li className="nav-item active">
                 <a href="#" className="nav-link">HOME</a>
               </li>
-              <li className="nav-item has-dropdown">
+              <li className="nav-item has-dropdown" 
+                  onMouseEnter={() => window.innerWidth >= 992 && setActiveDropdown(0)}
+                  onMouseLeave={() => window.innerWidth >= 992 && setActiveDropdown(null)}>
                 <a href="#" className="nav-link" onClick={(e) => toggleDropdown(0, e)}>
                   OUR SCOPE
-                  <span className="dropdown-indicator">▼</span>
+                  <ChevronDown size={14} className={`dropdown-icon ${activeDropdown === 0 ? 'rotate' : ''}`} />
                 </a>
-                {activeDropdown === 0 && (
-                  <ul className="dropdown">
-                    <li><a href="#">Warehouses</a></li>
-                    <li><a href="#">Factories</a></li>
-                    <li><a href="#">Stories</a></li>
-                    <li><a href="#">Steel Bridges</a></li>
-                    <li><a href="#">Mezzanine Floors</a></li>
-                    <li><a href="#">Roof Structures</a></li>
-                    <li><a href="#">Car Park Shades</a></li>
-                    <li><a href="#">Badminton Courts</a></li>
-                    <li><a href="#">Civil Constructions</a></li>
-                  </ul>
-                )}
+                <ul className={`dropdown ${activeDropdown === 0 ? 'show' : ''}`}>
+                  {[
+                    "Warehouses", "Factories", "Stories", "Steel Bridges", 
+                    "Mezzanine Floors", "Roof Structures", "Car Park Shades", 
+                    "Badminton Courts", "Civil Constructions"
+                  ].map(item => (
+                    <li key={item}><a href="#">{item}</a></li>
+                  ))}
+                </ul>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">OUR PROJECTS</a>
               </li>
-              <li className="nav-item has-dropdown">
+              <li className="nav-item has-dropdown"
+                  onMouseEnter={() => window.innerWidth >= 992 && setActiveDropdown(1)}
+                  onMouseLeave={() => window.innerWidth >= 992 && setActiveDropdown(null)}>
                 <a href="#" className="nav-link" onClick={(e) => toggleDropdown(1, e)}>
                   PRODUCTS
-                  <span className="dropdown-indicator">▼</span>
+                  <ChevronDown size={14} className={`dropdown-icon ${activeDropdown === 1 ? 'rotate' : ''}`} />
                 </a>
-                {activeDropdown === 1 && (
-                  <ul className="dropdown">
-                    <li><a href="#">Roofing Sheets</a></li>
-                    <li><a href="#">Gutters</a></li>
-                    <li><a href="#">Down Pipes</a></li>
-                    <li><a href="#">Purlins</a></li>
-                    <li><a href="#">Nuts and Bolts</a></li>
-                  </ul>
-                )}
+                <ul className={`dropdown ${activeDropdown === 1 ? 'show' : ''}`}>
+                  {[
+                    "Roofing Sheets", "Gutters", "Down Pipes", "Purlins", "Nuts and Bolts"
+                  ].map(item => (
+                    <li key={item}><a href="#">{item}</a></li>
+                  ))}
+                </ul>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">ABOUT US</a>
@@ -100,31 +113,34 @@ const Nav = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        /* Global variables */
-        :root {
-          --primary-gray: #666666;
-          --primary-black: #000000;
-          --dark-gray: #333333;
-          --light-gray: #f1f1f1;
-          --white: #ffffff;
-          --text-dark: #222222;
+      <style>{`
+        .navbar-wrapper {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 1000;
+          transition: var(--transition);
         }
 
-        /* Global container */
         .container {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 0 15px;
-          width: 100%;
+          padding: 0 20px;
         }
 
-        /* Info Bar with Hotline */
+        /* Info Bar */
         .info-bar {
-          background-color: var(--light-gray);
-          padding: 8px 0;
-          font-size: 14px;
-          border-bottom: 1px solid #e5e5e5;
+          background-color: #f8f9fa;
+          padding: 6px 0;
+          font-size: 13px;
+          border-bottom: 1px solid rgba(0,0,0,0.05);
+          transition: var(--transition);
+        }
+
+        .navbar-wrapper.scrolled .info-bar {
+          margin-top: -40px;
+          opacity: 0;
         }
 
         .info-container {
@@ -134,107 +150,83 @@ const Nav = () => {
         }
 
         .company-slogan {
-          color: var(--text-dark);
+          color: #666;
           font-weight: 500;
-          margin-left:30px;
-         font-family: fantasy;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
         }
 
         .hotline {
           display: flex;
           align-items: center;
-          gap: 6px;
-          color: var(--text-dark);
+          gap: 8px;
+          color: #444;
         }
 
         .hotline-icon {
-          color: var(--primary-gray);
+          color: var(--tech-orange);
+        }
+
+        .hotline-label {
+          font-weight: 600;
+          color: #333;
         }
 
         .hotline-number {
-          color: var(--primary-gray);
-          font-weight: bold;
+          color: #666;
+          font-weight: 500;
           text-decoration: none;
-          transition: color 0.2s;
         }
 
         .hotline-number:hover {
-          color: var(--primary-black);
-          text-decoration: underline;
+          color: var(--tech-orange);
         }
 
-        /* Main Navigation */
-        .navbar-wrapper {
-          position: relative;
-          z-index: 1000;
+        .divider {
+          color: #ddd;
+          margin: 0 4px;
         }
 
+        /* Main Navbar */
         .navbar-container {
-          background-color: var(--white);
-          position: relative;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          background-color: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+          transition: var(--transition);
         }
 
-        .gray-accent-line {
-          height: 4px;
-          width: 100%;
-          background-color: var(--primary-gray);
+        .navbar-wrapper.scrolled .navbar-container {
+          background-color: rgba(255, 255, 255, 0.95);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .main-nav {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0;
+          height: 80px;
+          transition: var(--transition);
         }
 
-        /* Logo Area */
-        .logo-area {
-          background-color: var(--primary-gray);
-          padding: 0 30px;
-          height: 100%;
-          position: relative;
-          display: flex;
-          align-items: center;
-        }
-
-        // .logo-area::after {
-        //   content: '';
-        //   position: absolute;
-        //   right: -20px;
-        //   top: 0;
-        //   width: 0;
-        //   height: 0;
-        //   border-style: solid;
-        //   border-width: 0 0 100px 20px;
-        //   border-color: transparent transparent var(--primary-gray) transparent;
-        // }
-
-        .logo-wrapper {
-          background-color: var(--primary-gray);
-          border-radius: 4px;
-          padding: 5px;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        .navbar-wrapper.scrolled .main-nav {
+          height: 70px;
         }
 
         .logo {
-          height: 80px;
-          display: block;
+          height: 50px;
+          width: auto;
+          transition: var(--transition);
+        }
+
+        .navbar-wrapper.scrolled .logo {
+          height: 40px;
         }
 
         /* Navigation */
-        .navigation {
-          background-color: var(--primary-black);
-          flex: 1;
-          margin-left: 20px;
-        }
-
         .nav-menu {
           display: flex;
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          justify-content: flex-end;
+          gap: 5px;
         }
 
         .nav-item {
@@ -242,119 +234,92 @@ const Nav = () => {
         }
 
         .nav-link {
-          color: var(--white);
-          text-decoration: none;
-          padding: 25px 15px;
-          display: block;
-          font-weight: 500;
+          color: #333;
           font-size: 14px;
-          transition: all 0.3s;
-          position: relative;
+          font-weight: 600;
+          padding: 10px 16px;
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          gap: 4px;
         }
 
-        .nav-item.active .nav-link::after,
-        .nav-link:hover::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 15px;
-          right: 15px;
-          height: 3px;
-          background-color: var(--primary-gray);
+        .nav-link:hover {
+          background-color: rgba(255, 107, 0, 0.05);
+          color: var(--tech-orange);
         }
 
-        .dropdown-indicator {
-          margin-left: 5px;
-          font-size: 10px;
-          opacity: 0.7;
+        .nav-item.active .nav-link {
+          color: var(--tech-orange);
+          background-color: rgba(255, 107, 0, 0.08);
         }
 
-        /* Dropdown styles */
-        .has-dropdown {
-          position: relative;
+        .dropdown-icon {
+          transition: transform 0.3s ease;
+          opacity: 0.6;
         }
 
+        .dropdown-icon.rotate {
+          transform: rotate(180deg);
+        }
+
+        /* Dropdown */
         .dropdown {
           position: absolute;
           top: 100%;
           left: 0;
-          background-color: var(--dark-gray);
-          min-width: 220px;
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-          z-index: 100;
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          border-top: 2px solid var(--primary-gray);
-          animation: fadeIn 0.3s ease;
+          background-color: white;
+          min-width: 240px;
+          padding: 10px 0;
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(10px);
+          transition: all 0.3s ease;
+          z-index: 1100;
+          border: 1px solid rgba(0,0,0,0.05);
         }
 
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+        .dropdown.show {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
         }
 
-        .dropdown li {
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .dropdown li:last-child {
-          border-bottom: none;
-        }
-
-        .dropdown a {
-          color: var(--white);
-          text-decoration: none;
-          padding: 12px 20px;
+        .dropdown li a {
           display: block;
+          padding: 10px 20px;
           font-size: 14px;
-          transition: all 0.2s;
+          color: #555;
+          font-weight: 500;
         }
 
-        .dropdown a:hover {
-          background-color: var(--primary-black);
+        .dropdown li a:hover {
+          background-color: #f8f9fa;
+          color: var(--tech-orange);
           padding-left: 25px;
         }
 
-        /* Mobile toggle */
+        /* Mobile Adjustments */
         .mobile-toggle {
           display: none;
           background: none;
           border: none;
-          color: var(--primary-black);
+          color: #333;
           cursor: pointer;
-          padding: 10px;
+          padding: 8px;
         }
 
-        /* Responsive Styles */
         @media (max-width: 992px) {
-          .main-nav {
-            padding: 10px 0;
-          }
-          
-          .logo-area {
-            background-color: transparent;
-            padding: 0;
-          }
-          
-          .logo-area::after {
+          .info-bar {
             display: none;
           }
-          
-          .logo-wrapper {
-            background-color: transparent;
-            box-shadow: none;
-          }
-          
-          .logo {
-            height: 60px;
-          }
-          
+
           .mobile-toggle {
             display: block;
-            z-index: 200;
           }
-          
+
           .navigation {
             position: fixed;
             top: 0;
@@ -362,61 +327,67 @@ const Nav = () => {
             width: 80%;
             max-width: 300px;
             height: 100vh;
-            background-color: var(--primary-black);
-            margin-left: 0;
-            transition: right 0.3s ease;
-            z-index: 100;
-            overflow-y: auto;
-            padding-top: 70px;
+            background-color: white;
+            padding: 80px 20px 40px;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+            z-index: 1050;
           }
-          
+
           .navigation.active {
             right: 0;
           }
-          
+
+          .mobile-drawer-close {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--tech-orange);
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1060;
+          }
+
+          @media (max-width: 992px) {
+            .mobile-drawer-close {
+              display: block;
+            }
+          }
+
           .nav-menu {
             flex-direction: column;
-            justify-content: flex-start;
+            gap: 10px;
           }
-          
+
           .nav-link {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
+            width: 100%;
+            justify-content: space-between;
           }
-          
-          .nav-item.active .nav-link::after,
-          .nav-link:hover::after {
-            display: none;
-          }
-          
+
           .dropdown {
             position: static;
-            width: 100%;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
             box-shadow: none;
-            border-top: none;
-            animation: none;
-            background-color: rgba(51, 51, 51, 0.5);
+            border: none;
+            max-height: 0;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            padding: 0;
+            margin: 0;
+            transition: max-height 0.4s ease-out;
           }
-          
-          .has-dropdown .nav-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          }
-          
-          .info-container {
-            flex-direction: column;
-            gap: 5px;
-          }
-        }
 
-        @media (max-width: 576px) {
-          .info-bar {
-            text-align: center;
-          }
-          
-          .logo {
-            height: 50px;
+          .dropdown.show {
+            max-height: 500px;
+            padding: 5px 0;
+            margin-top: 5px;
+            border-radius: 8px;
           }
         }
       `}</style>

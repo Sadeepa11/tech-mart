@@ -96,14 +96,14 @@ const Details = () => {
         }
 
         .techmart-highlight {
-          color: #3182ce;
+          color: #ff6b00;
           position: relative;
         }
 
         .title-underline {
           width: 6rem;
           height: 4px;
-          background: linear-gradient(90deg, #3182ce, #63b3ed);
+          background: linear-gradient(90deg, #ff6b00, #ff914d);
           margin: 0 auto;
           border-radius: 2px;
         }
@@ -143,7 +143,7 @@ const Details = () => {
           transition: all 0.3s ease;
           position: relative;
           overflow: hidden;
-          border-top: 4px solid #3182ce;
+          border-top: 4px solid #ff6b00;
         }
 
         .feature-card::before {
@@ -153,7 +153,7 @@ const Details = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(135deg, rgba(49, 130, 206, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+          background: linear-gradient(135deg, rgba(255, 107, 0, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
           z-index: 0;
         }
 
@@ -177,13 +177,13 @@ const Details = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: rgba(49, 130, 206, 0.1);
-          color: #3182ce;
+          background-color: rgba(255, 107, 0, 0.1);
+          color: #ff6b00;
           transition: all 0.3s ease;
         }
 
         .feature-card:hover .icon-circle {
-          background-color: #3182ce;
+          background-color: #ff6b00;
           color: white;
           transform: scale(1.1);
         }
@@ -213,7 +213,7 @@ const Details = () => {
         }
 
         .cta-button {
-          background-color: #3182ce;
+          background-color: #ff6b00;
           color: white;
           font-weight: 500;
           padding: 0.75rem 1.5rem;
@@ -221,7 +221,7 @@ const Details = () => {
           transition: all 0.3s ease;
           border: none;
           cursor: pointer;
-          box-shadow: 0 4px 6px rgba(49, 130, 206, 0.25);
+          box-shadow: 0 4px 6px rgba(255, 107, 0, 0.25);
           position: relative;
           overflow: hidden;
         }
@@ -238,8 +238,8 @@ const Details = () => {
         }
 
         .cta-button:hover {
-          background-color: #2c5282;
-          box-shadow: 0 6px 12px rgba(44, 82, 130, 0.35);
+          background-color: #e65a00;
+          box-shadow: 0 6px 12px rgba(230, 90, 0, 0.35);
         }
 
         .cta-button:hover::before {

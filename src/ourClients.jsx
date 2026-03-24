@@ -1,131 +1,99 @@
-import React from "react";
-
-
 import img1 from './assets/Logo/clients/dw.png';
 import img2 from './assets/Logo/clients/mm.png';
 import img3 from './assets/Logo/clients/rda.jpeg';
 
 const OurClients = () => {
+  const clients = [
+    { id: 1, name: "Client 1", logo: img1 },
+    { id: 2, name: "Client 2", logo: img2 },
+    { id: 3, name: "Client 3", logo: img3 },
+  ];
+
   return (
-    <section style={styles.clientsSection}>
-      {/* Header */}
-      <div style={styles.clientsHeader}>
-        <h2 style={styles.headerText}>Our Clients</h2>
-        <div style={styles.titleUnderline}></div>
-        <p style={styles.headerParagraph}>Trusted by leading companies across industries</p>
+    <section className="clients-section-v2">
+      <div className="container">
+        <div className="section-header">
+          <span className="section-tag">PARTNERSHIPS</span>
+          <h2 className="section-title">Trusted by Industry Leaders</h2>
+          <div className="title-accent"></div>
+          <p className="section-desc">We take pride in our collaborations with prestigious organizations that trust our engineering expertise.</p>
+        </div>
+
+        <div className="clients-grid-v2">
+          {clients.map((client) => (
+            <div key={client.id} className="client-logo-card">
+              <div className="logo-wrapper">
+                <img src={client.logo} alt={client.name} loading="lazy" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Clients Container */}
-      <div style={styles.clientsContainer}>
-        <div style={styles.clientCard}>
-          <img src= {img1} alt="Client 1" style={styles.clientImage} />
- 
-        </div>
-        <div style={styles.clientCard}>
-          <img src={img2} alt="Client 2" style={styles.clientImage} />
-     
-        </div>
-        <div style={styles.clientCard}>
-          <img src={img3} alt="Client 3" style={styles.clientImage} />
+      <style>{`
+        .clients-section-v2 {
+          padding: 80px 0;
+          background-color: #fcfcfc;
+        }
 
-        </div>
-      </div>
+        .clients-grid-v2 {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 30px;
+          margin-top: 50px;
+        }
+
+        .client-logo-card {
+          background: white;
+          border-radius: 16px;
+          height: 160px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 30px;
+          transition: all 0.4s ease;
+          border: 1px solid rgba(0,0,0,0.03);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .client-logo-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+          border-color: rgba(8, 58, 125, 0.1);
+        }
+
+        .logo-wrapper {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          filter: grayscale(100%);
+          opacity: 0.6;
+          transition: all 0.4s ease;
+        }
+
+        .client-logo-card:hover .logo-wrapper {
+          filter: grayscale(0%);
+          opacity: 1;
+        }
+
+        .logo-wrapper img {
+          max-width: 100%;
+          max-height: 80px;
+          object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+          .clients-grid-v2 { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+          .clients-grid-v2 { grid-template-columns: 1fr; }
+        }
+      `}</style>
     </section>
   );
 };
-
-// CSS-in-JS Styles
-const styles = {
-  clientsSection: {
-    maxWidth: "1200px",
-    margin: "auto",
-    padding: "40px 20px",
-    textAlign: "center",
-  },
-  clientsHeader: {
-    marginBottom: "3rem",
-  },
-  headerText: {
-    fontSize: "2.5rem",
-    fontWeight: "700",
-    color: "#1a202c",
-    marginBottom: "0.5rem",
-  },
-  titleUnderline: {
-    width: "60px",
-    height: "4px",
-    background: "linear-gradient(90deg, rgb(22, 6, 84), rgb(36, 72, 251))",
-    margin: "0.75rem auto 1.5rem",
-    borderRadius: "2px",
-  },
-  headerParagraph: {
-    fontSize: "1.125rem",
-    color: "#4b5563",
-    maxWidth: "600px",
-    margin: "0 auto",
-  },
-  clientsContainer: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "20px",
-    flexWrap: "wrap",
-  },
-  clientCard: {
-    background: "white",
-    padding: "20px",
-    borderRadius: "10px",
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-    textAlign: "center",
-    width: "280px",
-    transition: "transform 0.3s ease-in-out",
-  },
-  clientCardHover: {
-    transform: "scale(1.05)",
-  },
-  clientImage: {
-    width: "100%",
-    height: "auto",
-    marginBottom: "10px",
-  },
-  clientName: {
-    fontSize: "1.25rem",
-    color: "#1a202c",
-  },
-};
-
-// Responsive Styling using Media Queries
-const responsiveStyles = `
-  @media (max-width: 1024px) {
-    .clients-container {
-      flex-direction: row;
-      justify-content: space-around;
-    }
-  }
-  @media (max-width: 768px) {
-    .clients-container {
-      flex-direction: column;
-      align-items: center;
-    }
-    .client-card {
-      width: 80%;
-    }
-  }
-  @media (max-width: 480px) {
-    .clients-header h2 {
-      font-size: 2rem;
-    }
-    .clients-header p {
-      font-size: 1rem;
-    }
-    .client-card {
-      width: 100%;
-    }
-  }
-`;
-
-// Inject Responsive Styles
-const styleTag = document.createElement("style");
-styleTag.innerHTML = responsiveStyles;
-document.head.appendChild(styleTag);
 
 export default OurClients;

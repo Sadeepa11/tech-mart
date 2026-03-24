@@ -2,7 +2,7 @@
 :root {
   --primary-red: gray;
   --primary-blue: black ;
-  --dark-blue: #083a7d;
+  --tech-orange: #ff6b00;
   --white: #ffffff;
 }
 
@@ -86,11 +86,11 @@
 }
 
 .nav-item:hover .nav-link {
-  background-color: var(--dark-blue);
+  background-color: var(--tech-orange);
 }
 
 .nav-item.active .nav-link {
-  border-bottom: 2px solid var(--primary-red);
+  border-bottom: 2px solid var(--tech-orange);
 }
 
 /* Dropdown Menu */
@@ -105,7 +105,7 @@
 
 .dropdown-menu {
   position: absolute;
-  background-color: var(--dark-blue);
+  background-color: var(--tech-orange);
   min-width: 200px;
   z-index: 100;
   top: 100%;
@@ -198,7 +198,7 @@
     position: static;
     width: 100%;
     box-shadow: none;
-    background-color: rgba(8, 58, 125, 0.7);
+    background-color: rgba(255, 107, 0, 0.7);
   }
   
   .language-flags {

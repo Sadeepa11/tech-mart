@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-// import { Package, Building, BarChart2, Bridge, Layers, Home, Umbrella, Activity, Road } from 'lucide-react';
+import { useState } from 'react';
+import { 
+  Package, Factory, BarChart2, Waypoints, Layers, 
+  Home, Umbrella, Activity, HardHat, ChevronRight 
+} from 'lucide-react';
 
 const OurScope = () => {
   const [activeTab, setActiveTab] = useState(null);
@@ -8,275 +11,241 @@ const OurScope = () => {
     {
       id: 1,
       title: "Warehouses",
-    //   icon: <Package />,
-      description: "Custom designed storage facilities with optimal space utilization and effective load-bearing capacity to meet your specific logistics needs."
+      icon: <Package size={32} />,
+      description: "Custom designed storage facilities with optimal space utilization and effective load-bearing capacity."
     },
     {
       id: 2,
       title: "Factories",
-    //   icon: <Building />,
-      description: "Efficient manufacturing environments designed to maximize productivity, accommodate specialized equipment, and meet strict industrial safety standards."
+      icon: <Factory size={32} />,
+      description: "Efficient manufacturing environments designed to maximize productivity and accommodate specialized equipment."
     },
     {
       id: 3,
-      title: "Stories",
-    //   icon: <BarChart2 />,
-      description: "Multi-story commercial and industrial buildings combining architectural appeal with structural integrity for visually impressive and functionally sound spaces."
+      title: "Multi-Story",
+      icon: <BarChart2 size={32} />,
+      description: "Commercial and industrial buildings combining architectural appeal with structural integrity."
     },
     {
       id: 4,
       title: "Steel Bridges",
-    //   icon: <Bridge />,
-      description: "Durable steel bridges designed to withstand heavy loads and harsh environmental conditions with advanced engineering techniques."
+      icon: <Waypoints size={32} />,
+      description: "Durable steel bridges designed to withstand heavy loads and harsh environmental conditions."
     },
     {
       id: 5,
       title: "Mezzanine Floors",
-    //   icon: <Layers />,
-      description: "Custom mezzanine solutions that maximize vertical space utilization while providing optimal stability and additional functional areas."
+      icon: <Layers size={32} />,
+      description: "Custom mezzanine solutions that maximize vertical space while providing optimal stability."
     },
     {
       id: 6,
       title: "Roof Structures",
-    //   icon: <Home />,
-      description: "Complex roof solutions offering protection, insulation, and aesthetic appeal designed to withstand environmental challenges."
+      icon: <Home size={32} />,
+      description: "Complex roof solutions offering protection, insulation, and high-end aesthetic appeal."
     },
     {
       id: 7,
       title: "Car Park Shades",
-    //   icon: <Umbrella />,
-      description: "Elegant and durable shading solutions that protect vehicles from the elements while offering customized coverage options."
+      icon: <Umbrella size={32} />,
+      description: "Elegant and durable shading solutions that protect vehicles while offering customized coverage."
     },
     {
       id: 8,
-      title: "Badminton Courts",
-    //   icon: <Activity />,
-      description: "Professional-grade courts with precise dimensions, optimal playing surfaces, proper lighting systems, and accurate line markings."
+      title: "Sports Courts",
+      icon: <Activity size={32} />,
+      description: "Professional-grade courts with precise dimensions and optimal playing surfaces."
     },
     {
       id: 9,
       title: "Civil Constructions",
-    //   icon: <Road />,
-      description: "Comprehensive infrastructure projects including roads, drainage systems, retaining walls, and site development with full regulatory compliance."
+      icon: <HardHat size={32} />,
+      description: "Comprehensive infrastructure projects including drainage systems and site development."
     }
   ];
 
-  const handleCardClick = (id) => {
-    setActiveTab(activeTab === id ? null : id);
-  };
-
   return (
-    <div className="scope-section">
-      <style jsx>{`
-        .scope-section {
-          background-color: #f5f5f5;
-          padding: 80px 20px;
-          font-family: 'Arial', sans-serif;
-        }
-
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-
-        .section-header {
-          text-align: center;
-          margin-bottom: 60px;
-        }
-
-        .section-title {
-          font-size: 36px;
-          font-weight: 700;
-          color: #1a3c6e;
-          margin-bottom: 16px;
-        }
-
-        .section-divider {
-          width: 80px;
-          height: 4px;
-          background-color: #1a3c6e;
-          margin: 0 auto 24px;
-        }
-
-        .section-description {
-          max-width: 800px;
-          margin: 0 auto;
-          font-size: 18px;
-          color: #555;
-          line-height: 1.6;
-        }
-
-        .services-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 30px;
-        }
-
-        .service-card {
-          background-color: white;
-          border-radius: 8px;
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-          overflow: hidden;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          cursor: pointer;
-        }
-
-        .service-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-card.active {
-          border: 2px solid #1a3c6e;
-        }
-
-        .service-icon {
-          height: 120px;
-          background-color: #1a3c6e;
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .service-icon svg {
-          width: 50px;
-          height: 50px;
-        }
-
-        .service-content {
-          padding: 25px;
-        }
-
-        .service-title {
-          font-size: 22px;
-          font-weight: 600;
-          margin-bottom: 15px;
-          color: #1a3c6e;
-        }
-
-        .service-description {
-          font-size: 15px;
-          color: #666;
-          margin-bottom: 20px;
-          line-height: 1.5;
-        }
-
-        .learn-more-button {
-          display: inline-flex;
-          align-items: center;
-          padding: 10px 20px;
-          background-color: #1a3c6e;
-          color: white;
-          text-decoration: none;
-          border-radius: 4px;
-          font-weight: 600;
-          font-size: 14px;
-          border: none;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-        }
-
-        .learn-more-button:hover {
-          background-color: #15305a;
-        }
-
-        .button-icon {
-          margin-left: 8px;
-        }
-
-        .expanded-content {
-          background-color: #f0f5ff;
-          padding: 20px;
-          border-top: 1px solid #e0e0ff;
-        }
-
-        .expanded-title {
-          font-size: 16px;
-          font-weight: 600;
-          color: #1a3c6e;
-          margin-bottom: 12px;
-        }
-
-        .expanded-list {
-          padding-left: 20px;
-          margin: 0;
-        }
-
-        .expanded-list li {
-          margin-bottom: 6px;
-          color: #444;
-        }
-
-        @media (max-width: 768px) {
-          .services-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-          }
-
-          .section-title {
-            font-size: 28px;
-          }
-
-          .section-description {
-            font-size: 16px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .services-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .scope-section {
-            padding: 40px 15px;
-          }
-        }
-      `}</style>
-
+    <section className="scope-section">
       <div className="container">
         <div className="section-header">
+          <span className="section-tag">CAPABILITIES</span>
           <h2 className="section-title">Our Scope of Services</h2>
-          <div className="section-divider"></div>
-          <p className="section-description">
-            We provide comprehensive structural engineering and construction services across a wide range of industrial, commercial, and infrastructure projects.
-          </p>
+          <div className="title-accent"></div>
+          <p className="section-desc">We provides comprehensive structural engineering and construction services across industrial and commercial sectors.</p>
         </div>
 
         <div className="services-grid">
           {services.map((service) => (
             <div 
               key={service.id} 
-              className={`service-card ${activeTab === service.id ? 'active' : ''}`}
-              onClick={() => handleCardClick(service.id)}
+              className={`service-card-v3 ${activeTab === service.id ? 'is-active' : ''}`}
+              onClick={() => setActiveTab(activeTab === service.id ? null : service.id)}
             >
-              {/* <div className="service-icon"> */}
-                {/* {service.icon} */}
-              {/* </div> */}
-              <div className="service-content">
-                <h3 className="service-title">{service.title}</h3>
-                <p className="service-description">{service.description}</p>
-                <button className="learn-more-button">
-                  Learn More
-                  <span className="button-icon">→</span>
-                </button>
+              <div className="card-top">
+                <div className="icon-box">{service.icon}</div>
+                <h3 className="service-title-v3">{service.title}</h3>
+              </div>
+              <div className="card-body">
+                <p className="service-desc-v3">{service.description}</p>
+                <div className="card-action">
+                  <span>LEARN MORE</span>
+                  <ChevronRight size={16} className="arrow-icon" />
+                </div>
               </div>
               
               {activeTab === service.id && (
-                <div className="expanded-content">
-                  <h4 className="expanded-title">Key Features:</h4>
-                  <ul className="expanded-list">
-                    <li>Professional engineering and design</li>
-                    <li>Quality materials and construction</li>
-                    <li>Custom solutions for your specific needs</li>
-                    <li>Adherence to industry standards</li>
-                  </ul>
+                <div className="expanded-zone">
+                  <div className="zone-inner">
+                    <h4 className="zone-label">Key Specialties:</h4>
+                    <ul className="zone-list">
+                      <li>Bespoke Engineering</li>
+                      <li>High-Grade Steel</li>
+                      <li>Regulatory Compliance</li>
+                    </ul>
+                  </div>
                 </div>
               )}
             </div>
           ))}
         </div>
       </div>
-    </div>
+
+      <style>{`
+        .scope-section {
+          background-color: #f8f9fa;
+          padding: 100px 0;
+        }
+
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 30px;
+          margin-top: 50px;
+        }
+
+        .service-card-v3 {
+          background: white;
+          border-radius: 16px;
+          padding: 40px;
+          transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+          cursor: pointer;
+          border: 1px solid rgba(0,0,0,0.03);
+          position: relative;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .service-card-v3:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+          border-color: rgba(255, 107, 0, 0.1);
+        }
+
+        .service-card-v3.is-active {
+          background-color: var(--tech-orange);
+          color: white;
+        }
+
+        .card-top {
+          margin-bottom: 24px;
+        }
+
+        .icon-box {
+          color: var(--tech-orange);
+          margin-bottom: 20px;
+          transition: var(--transition);
+        }
+
+        .service-card-v3.is-active .icon-box {
+          color: white;
+        }
+
+        .service-title-v3 {
+          font-size: 1.4rem;
+          font-weight: 700;
+          margin: 0;
+        }
+
+        .service-desc-v3 {
+          color: #666;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin-bottom: 24px;
+          transition: var(--transition);
+        }
+
+        .service-card-v3.is-active .service-desc-v3 {
+          color: rgba(255,255,255,0.8);
+        }
+
+        .card-action {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          color: var(--tech-orange);
+          transition: var(--transition);
+        }
+
+        .service-card-v3.is-active .card-action {
+          color: white;
+        }
+
+        .arrow-icon {
+          transition: transform 0.3s ease;
+        }
+
+        .service-card-v3:hover .arrow-icon {
+          transform: translateX(5px);
+        }
+
+        .expanded-zone {
+          margin-top: 30px;
+          padding-top: 24px;
+          border-top: 1px solid rgba(255,255,255,0.1);
+          animation: slideDown 0.4s ease forwards;
+        }
+
+        .zone-label {
+          font-size: 14px;
+          font-weight: 600;
+          margin-bottom: 12px;
+        }
+
+        .zone-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          font-size: 14px;
+        }
+
+        .zone-list li {
+          margin-bottom: 8px;
+          padding-left: 20px;
+          position: relative;
+        }
+
+        .zone-list li::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: inherit;
+          opacity: 0.7;
+        }
+
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+          .services-grid { grid-template-columns: 1fr; }
+          .service-card-v3 { padding: 30px; }
+        }
+      `}</style>
+    </section>
   );
 };
 
