@@ -311,6 +311,10 @@ const Nav = () => {
           padding: 8px;
         }
 
+        .mobile-drawer-close {
+          display: none;
+        }
+
         @media (max-width: 992px) {
           .info-bar {
             display: none;
@@ -339,7 +343,7 @@ const Nav = () => {
           }
 
           .mobile-drawer-close {
-            display: none;
+            display: block;
             position: absolute;
             top: 20px;
             right: 20px;
@@ -349,12 +353,6 @@ const Nav = () => {
             cursor: pointer;
             padding: 8px;
             z-index: 1060;
-          }
-
-          @media (max-width: 992px) {
-            .mobile-drawer-close {
-              display: block;
-            }
           }
 
           .nav-menu {
