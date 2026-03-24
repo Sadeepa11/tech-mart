@@ -195,6 +195,18 @@ const WhoWeAre = () => {
           .title-accent-v2 { margin: 0 auto 30px; }
           .stats-row { justify-content: center; }
           .who-visual-content { width: 100%; max-width: 450px; margin: 0 auto; }
+          .image-accent {
+            left: -20px;
+            bottom: -30px;
+          }
+          .accent-box {
+            padding: 12px 18px;
+            gap: 8px;
+          }
+          .accent-text {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+          }
         }
       `}</style>
     </section>
